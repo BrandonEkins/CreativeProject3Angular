@@ -1,0 +1,13 @@
+body {
+    background-color: #aea79f!important;
+}
+
+Defaultcolors {
+    color: #dd4814 #77216f #5e2750 #2c001e #aea79f #333333
+}
+
+.mainCard {
+    height: 800px;
+    width: 1000px;
+    border: #333333 solid 1px;
+}
