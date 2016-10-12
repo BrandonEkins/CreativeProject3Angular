@@ -1,6 +1,6 @@
 <head>
     <title>Angular Calander</title>
-    <link href="masterStyles.css">
+    <link rel="stylesheet" href="masterStyles.css">
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
@@ -12,12 +12,13 @@
 </head>
 
 <body ng-app="app" ng-controller="mainCtrl">
-    <md-card style="margin:20px 20px 20px 20px; border: #333333 solid 1px;">
+    <div class="spacer" style="height:20px"></div>
+    <md-card class="mainCard">
         <md-toobar class="md-toolbar-tools" style="background-color: #dd4814; color:#2c001e">{{currentMonth.name}} <span flex></span>
-            <>
+            <span ng-click="backMonth()" class="arrow"><</span><span class="arrow" ng-click="forwardMonth()">></span>
         </md-toobar>
         <table>
-
+            <tr ng-repeat=""></tr>
         </table>
     </md-card>
 </body>

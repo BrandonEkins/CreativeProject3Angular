@@ -7,7 +7,12 @@ Defaultcolors {
 }
 
 .mainCard {
-    height: 800px;
-    width: 1000px;
+    margin: 0px 20px 20px 20px;
     border: #333333 solid 1px;
+    height: 500px;
+    width: 800px;
+}
+
+.arrow {
+    cursor: pointer;
 }
