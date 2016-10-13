@@ -16,3 +16,11 @@ Defaultcolors {
 .arrow {
     cursor: pointer;
 }
+
+.day {
+    display: inline-block;
+    border: black solid 1px;
+    width: 14.28%;
+    height: 16.6%;
+    vertical-align: top;
+}

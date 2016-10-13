@@ -5,40 +5,52 @@ angular.module('app', ['ngMaterial'])
             $scope.test = "Hello World";
             $scope.currentMonth = {};
             $scope.calander = [{
+                    id: 0,
                     name: "January",
                     days: [],
                 }, {
+                    id: 1,
                     name: "Febuary",
                     days: [],
                 }, {
+                    id: 2,
                     name: "March",
                     days: [],
                 }, {
+                    id: 3,
                     name: "April",
                     days: [],
                 }, {
+                    id: 4,
                     name: "May",
                     days: [],
                 }, {
+                    id: 5,
                     name: "June",
                     days: [],
                 }, {
+                    id: 6,
                     name: "July",
                     days: [],
                 }, {
+                    id: 7,
                     name: "August",
                     days: [],
                 }, {
+                    id: 8,
                     name: "September",
                     days: [],
                 }, {
+                    id: 9,
                     name: "October",
                     days: [],
                 }, {
+                    id: 10,
                     name: "November",
                     days: [],
                 },
                 {
+                    id: 11,
                     name: "December",
                     days: [],
                 },
@@ -49,15 +61,21 @@ angular.module('app', ['ngMaterial'])
                 events: [] // work on this
             }
             $scope.daysInEachMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-            $scope.daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-            $scope.currentDayOfWeek = 4;
+            $scope.daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            $scope.currentDayOfWeek = 5;
             $scope.calcDays = function() {
                 for (var i = 0; $scope.calander.length > i; i++) { //selects correct month
-
-                    for (var j = 0; $scope.daysInEachMonth[i] > j; j++) {
+                    for (var j = 0; $scope.currentDayOfWeek > j; j++) {
+                        $scope.calander[i].days.push({
+                            date: null,
+                            dayOfWeek: j,
+                            events: []
+                        });
+                    }
+                    for (var j = 1; $scope.daysInEachMonth[i] >= j; j++) {
                         $scope.calander[i].days.push({ // adds days to day array
                             date: j,
-                            dayOfWeek: $scope.daysOfWeek[$scope.currentDayOfWeek],
+                            dayOfWeek: $scope.currentDayOfWeek,
                             events: []
                         });
                         if ($scope.currentDayOfWeek == 6) { // increments days of week
@@ -84,13 +102,19 @@ angular.module('app', ['ngMaterial'])
                 $scope.curMonthInt -= 1;
                 $scope.currentMonth = $scope.calander[$scope.curMonthInt]
             }
-
-
-
-
-
-
-
-
+            $scope.compareHide = function(value) {
+                if (value == "end") {
+                    if ($scope.currentMonth.id > 10)
+                        return true;
+                    else
+                        return false;
+                } else {
+                    if ($scope.currentMonth.id < 1)
+                        return true;
+                    else
+                        return false;
+                }
+            }
         }
+
     ]);

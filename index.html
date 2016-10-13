@@ -15,8 +15,19 @@
     <div class="spacer" style="height:20px"></div>
     <md-card class="mainCard">
         <md-toobar class="md-toolbar-tools" style="background-color: #dd4814; color:#2c001e">{{currentMonth.name}} <span flex></span>
-            <span ng-click="backMonth()" class="arrow"><</span><span class="arrow" ng-click="forwardMonth()">></span>
+            <span ng-hide="compareHide('start')" ng-click="backMonth()" class="arrow"><</span>
+            <span ng-hide="!compareHide('start')">x</span>
+            <span ng-hide="compareHide('end')" class="arrow" ng-click="forwardMonth()">></span>
+            <span ng-hide="!compareHide('end')">x</span>
         </md-toobar>
 
+        <div style="height:450px; width:799px">
+            <div class="day" ng-repeat="day in currentMonth.days track by $index">
+                <div>
+                    {{day.date}}
+                </div>
+            </div>
+        </div>
     </md-card>
+
 </body>
