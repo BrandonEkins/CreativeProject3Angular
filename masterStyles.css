@@ -4,10 +4,12 @@ body {
     background-attachment: fixed;
     background-position: center;
     background-color: black !important;
+    overflow: hidden;
+    background-size: 100% 100%;
 }
 
 Defaultcolors {
-    color: #dd4814 #77216f #5e2750 #2c001e #aea79f #333333
+    color: #dd4814 #77216f #5e2750 #2c001e #aea79f #333333 #003776
 }
 
 .mainCard {
@@ -31,5 +33,21 @@ Defaultcolors {
     opacity: 1;
     background-color: #333333;
     opacity: .8;
-    color: #aea79f;
+    color: white;
+}
+
+.gone {
+    visibility: hidden !important;
+}
+
+.dayLabels {
+    opacity: .8;
+    color: white;
+    text-align: center;
+}
+
+.toolbar {
+    background-color: #003776;
+    color: white;
+    opacity: .8;
 }
