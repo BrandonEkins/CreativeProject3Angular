@@ -16,9 +16,9 @@
     <div class="mainCard">
         <md-toobar class="md-toolbar-tools toolbar">{{currentMonth.name}} <span flex></span>
             <span ng-hide="compareHide('start')" ng-click="backMonth()" class="arrow"><</span>
-            <span ng-hide="!compareHide('start')">x</span>
+            <span ng-hide="!compareHide('start')">&nbsp;</span>&nbsp;
             <span ng-hide="compareHide('end')" class="arrow" ng-click="forwardMonth()">></span>
-            <span ng-hide="!compareHide('end')">x</span>
+            <span ng-hide="!compareHide('end')">&nbsp;</span>
         </md-toobar>
 
         <div style="height:80%; width:100%">
@@ -31,11 +31,36 @@
                 <div class="dayLabels" flex>Friday</div>
                 <div class="dayLabels" flex>Saturday</div>
             </div>
-            <div class="day" ng-class="{gone: day.date === null }" ng-repeat="day in currentMonth.days track by $index">
+            <div class="day" ng-class="{gone: day.date === null, today:isToday(day.date)}" ng-repeat="day in currentMonth.days track by $index"
+                ng-click="$parent.selected_date = $parent.currentMonth.days[$index].date">
                 <div>
                     <span style="margin-left: 3px">{{day.date}}</span>
+<!--                     <div>{{day.events.length}} Events</div> -->
                 </div>
             </div>
         </div>
-        </md-card>
+    </div>
+    <div class='specific_day_underlay' ng-hide="selected_date == undefined">
+        <div class='specific_day'>
+            <h3>{{currentMonth.name}} {{selected_date}}, 2016</h3>
+            <div class="specific_day_events">
+                <div class="event" ng-repeat="event in currentMonth.days[selected_date].events"
+                    ng-click="$parent.selected_event = $parent.currentMonth.days[$parent.selected_date].events[$index]">
+                    <h6>{{event.time}}</h6>
+                    <h5>{{event.name}} @ {{event.location}}</h5>
+                </div>
+            </div>
+            <span class="exit" ng-click="selected_date = null">X</span>
+            <div class="event" ng-click="addEvent()">+ Add Event</div>
+        </div>
+    </div>
+    <div class="selected_event_underlay" ng-hide="selected_event == undefined">
+        <div class="selected_event">
+            <h3>Edit Event</h3>
+            <h4>Event:</h4><input type="text" ng-model="selected_event.name" /><br>
+            <h4>Time:</h4><input type="text" ng-model="selected_event.time" /><br>
+            <h4>Location:</h4><input type="text" ng-model="selected_event.location" /><br>
+            <span class="exit" ng-click="selected_event = null">X</span>
+        </div>
+    </div>
 </body>

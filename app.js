@@ -2,9 +2,8 @@ angular.module('app', ['ngMaterial'])
     .controller('mainCtrl', [
         '$scope',
         function($scope) {
-            $scope.test = "Hello World";
             $scope.currentMonth = {};
-            $scope.calander = [{
+            $scope.calendar = [{
                     id: 0,
                     name: "January",
                     days: [],
@@ -64,16 +63,16 @@ angular.module('app', ['ngMaterial'])
             $scope.daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
             $scope.currentDayOfWeek = 5;
             $scope.calcDays = function() {
-                for (var i = 0; $scope.calander.length > i; i++) { //selects correct month
+                for (var i = 0; $scope.calendar.length > i; i++) { //selects correct month
                     for (var j = 0; $scope.currentDayOfWeek > j; j++) {
-                        $scope.calander[i].days.push({
+                        $scope.calendar[i].days.push({
                             date: null,
                             dayOfWeek: j,
                             events: []
                         });
                     }
                     for (var j = 1; $scope.daysInEachMonth[i] >= j; j++) {
-                        $scope.calander[i].days.push({ // adds days to day array
+                        $scope.calendar[i].days.push({ // adds days to day array
                             date: j,
                             dayOfWeek: $scope.currentDayOfWeek,
                             events: []
@@ -90,17 +89,21 @@ angular.module('app', ['ngMaterial'])
             $scope.calcDays();
             $scope.setDate = function() {
                 var my_date = new Date();
-                $scope.currentMonth = $scope.calander[my_date.getMonth()];
+                $scope.currentMonth = $scope.calendar[my_date.getMonth()];
                 $scope.curMonthInt = my_date.getMonth();
             }
             $scope.setDate();
             $scope.forwardMonth = function() {
                 $scope.curMonthInt += 1;
-                $scope.currentMonth = $scope.calander[$scope.curMonthInt]
+                $scope.currentMonth = $scope.calendar[$scope.curMonthInt]
             }
             $scope.backMonth = function() {
                 $scope.curMonthInt -= 1;
-                $scope.currentMonth = $scope.calander[$scope.curMonthInt]
+                $scope.currentMonth = $scope.calendar[$scope.curMonthInt]
+            }
+            $scope.isToday = function (date) {
+                var today = new Date();
+                return date == today.getDate() && $scope.currentMonth.id == today.getMonth();
             }
             $scope.compareHide = function(value) {
                 if (value == "end") {
@@ -114,6 +117,11 @@ angular.module('app', ['ngMaterial'])
                     else
                         return false;
                 }
+            }
+            $scope.addEvent = function() {
+                $scope.selected_event = {};
+                console.log($scope.selected_date);
+                $scope.currentMonth.days[$scope.selected_date].events.push($scope.selected_event);
             }
         }
 
