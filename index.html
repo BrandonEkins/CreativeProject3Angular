@@ -13,7 +13,7 @@
 
 <body ng-app="app" ng-controller="mainCtrl">
     <div class="spacer" style="height:20px"></div>
-    <md-card class="mainCard">
+    <div class="mainCard">
         <md-toobar class="md-toolbar-tools" style="background-color: #dd4814; color:#2c001e">{{currentMonth.name}} <span flex></span>
             <span ng-hide="compareHide('start')" ng-click="backMonth()" class="arrow"><</span>
             <span ng-hide="!compareHide('start')">x</span>
