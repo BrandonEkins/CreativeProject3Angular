@@ -120,9 +120,7 @@ angular.module('app', ['ngMaterial'])
             }
             $scope.addEvent = function() {
                 $scope.selected_event = {};
-                console.log($scope.selected_date);
                 $scope.currentMonth.days[$scope.selected_date].events.push($scope.selected_event);
             }
         }
-
     ]);

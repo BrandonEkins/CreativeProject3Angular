@@ -32,17 +32,17 @@
                 <div class="dayLabels" flex>Saturday</div>
             </div>
             <div class="day" ng-class="{gone: day.date === null, today:isToday(day.date)}" ng-repeat="day in currentMonth.days track by $index"
-                ng-click="$parent.selected_date = $parent.currentMonth.days[$index].date">
+                ng-click="$parent.selected_date = $index">
                 <div>
-                    <span style="margin-left: 3px">{{day.date}}</span>
-<!--                     <div>{{day.events.length}} Events</div> -->
+                    <span style="margin-left: 3px">{{day.date}} ({{day.events.length}})</span>
+                    <div ng-repeat="event in day.events" style="white-space: nowrap; overflow: hidden; padding-left: 4px">{{event.name}}</div>
                 </div>
             </div>
         </div>
     </div>
     <div class='specific_day_underlay' ng-hide="selected_date == undefined">
         <div class='specific_day'>
-            <h3>{{currentMonth.name}} {{selected_date}}, 2016</h3>
+            <h3>{{currentMonth.name}} {{currentMonth.days[selected_date].date}}, 2016</h3>
             <div class="specific_day_events">
                 <div class="event" ng-repeat="event in currentMonth.days[selected_date].events"
                     ng-click="$parent.selected_event = $parent.currentMonth.days[$parent.selected_date].events[$index]">
